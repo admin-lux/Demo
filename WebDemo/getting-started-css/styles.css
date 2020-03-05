@@ -45,5 +45,18 @@ a:visited {
 
 a:hover {
   text-decoration: none;
-  color: green;
+}
+
+h1:hover {
+  font-style: italic;
+  background-color: salmon;
+}
+
+.job-title:hover {
+  font-style: italic;
+}
+
+h2:hover {
+  background-color: salmon;
+  font-style: italic;
 }
