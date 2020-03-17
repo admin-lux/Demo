@@ -9,13 +9,11 @@ for (let i = 1; i <= 5; i++) {
   const newImage = document.createElement('img');
   newImage.setAttribute('src', "images/pic" + i + ".jpg");
   thumbBar.appendChild(newImage);
+  newImage.onclick = e => {
+    let imgSrc = e.target.getAttribute("src");
+    displayedImage.setAttribute("src", imgSrc);
+  };
 }
-let thumbImages = thumbBar.childNodes;
-thumbImages.forEach(image => {
-  image.onclick = function(e) {
-    displayedImage.setAttribute("src", e.target.src);
-  }
-})
 
 /* 编写 变亮/变暗 按钮 */
 btn.onclick = function() {
