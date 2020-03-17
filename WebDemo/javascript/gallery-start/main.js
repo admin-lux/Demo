@@ -18,13 +18,15 @@ thumbImages.forEach(image => {
 })
 
 /* 编写 变亮/变暗 按钮 */
-let clazz = btn.getAttribute("class");
-if (clazz === "dark") {
-  btn.setAttribute('class', "light");
-  btn.textContent = "变量";
-  overlay.style.backgroundColor = rgb(0, 0, 0, 0.5);
-} else {
-  btn.setAttribute('class', "dark");
-  btn.textContent = "变暗";
-  overlay.style.backgroundColor = rgb(0, 0, 0, 0);
+btn.onclick = function() {
+  let clazz = btn.getAttribute("class");
+  if (clazz === "dark") {
+    btn.setAttribute('class', "light");
+    btn.textContent = "变亮";
+    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+  } else {
+    btn.setAttribute('class', "dark");
+    btn.textContent = "变暗";
+    overlay.style.backgroundColor = "rgba(0,0,0,0)";
+  }
 }
