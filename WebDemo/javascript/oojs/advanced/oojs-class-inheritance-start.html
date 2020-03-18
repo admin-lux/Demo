@@ -89,27 +89,56 @@
     alert(this.name.first + ' has left the building. Bye for now!');
   }
 
-  let person1 = new Person('Tammi', 'Smith', 17, 'female', ['music', 'skiing', 'kickboxing']);
+  let person1 = new Person('Bob', 'Smith', 32, 'Male', ['Music', 'Skiing']);
+  let person2 = new Person('Diane', 'Cope', 28, 'Female', ['Kickboxing', 'Brewing']);
 
   function Teacher(first, last, age, gender, interests, subject) {
     Person.call(this, first, last, age, gender, interests);
-    Teacher.prototype = Object.create(Person.prototype);
-    Teacher.prototype.constructor = Teacher;
 
     this.subject = subject;
   }
+  Teacher.prototype = Object.create(Person.prototype);
+  Teacher.prototype.constructor = Teacher;
 
-  function Brick() {
-    this.width = 10;
-    this.height = 20;
+  // function Brick() {
+  //   this.width = 10;
+  //   this.height = 20;
+  // }
+
+  // function BlueGlassBrick() {
+  //   Brick.call(this);
+
+  //   this.opacity = 0.5;
+  //   this.color = 'blue';
+  // }
+
+  Teacher.prototype.greeting = function() {
+    var prefix;
+
+    if (this.gender === 'male' || this.gender === 'Male' || this.gender === 'm' || this.gender === 'M') {
+      prefix = 'Mr.';
+    } else if (this.gender === 'female' || this.gender === 'Female' || this.gender === 'f' || this.gender === 'F') {
+      prefix = 'Mrs.';
+    } else {
+      prefix = 'Mx.';
+    }
+
+    alert('Hello. My name is ' + prefix + ' ' + this.name.last + ', and I teach ' + this.subject + '.');
+  };
+
+  let teacher1 = new Teacher('Dave', 'Griffiths', 31, 'male', ['football', 'cookery'], 'Math');
+  let teacher2 = new Teacher('Melanie', 'Hall', 26, 'Female', ['playing guitar', 'archery'], 'Physics')
+
+  function Student(firstName, lastName, age, gender, interests) {
+    Person.call(this, firstName, lastName, age, gender, interests);
   }
+  Student.prototype = Object.create(Person.prototype);
+  // Student.prototype.constructor = Student;
 
-  function BlueGlassBrick() {
-    Brick.call(this);
-
-    this.opacity = 0.5;
-    this.color = 'blue';
+  Student.prototype.greeting = function() {
+    alert('Yo! I\'m ' + this.name.first + '.');
   }
+  let student1 = new Student('rick', 'lu', 25, 'Male', ['running']);
 </script>
 
 </html>
