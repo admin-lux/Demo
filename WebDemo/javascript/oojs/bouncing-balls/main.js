@@ -1,4 +1,4 @@
-const BALLS_COUNT = 25;
+const BALLS_COUNT = 5;
 const BALL_SIZE_MIN = 10;
 const BALL_SIZE_MAX = 20;
 const BALL_SPEED_MAX = 7;
@@ -6,6 +6,7 @@ const BALL_SPEED_MAX = 7;
 // 设定画布
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
+const p = document.querySelector('p');
 
 // 设定画布长宽
 const width = canvas.width = window.innerWidth;
@@ -94,14 +95,87 @@ function EvilCircle(x, y, exists) {
 EvilCircle.prototype = Object.create(Shape.prototype);
 EvilCircle.prototype.constructor = EvilCircle;
 
+EvilCircle.prototype.draw = function() {
+  ctx.beginPath();
+  ctx.lineWidth = 3;
+  ctx.strokeStyle = this.color;
+  ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+  ctx.stroke();
+}
+
+EvilCircle.prototype.checkBounds = function() {
+  if ((this.x + this.size) >= width) {
+    this.x = -(this.size);
+    if (this.x < 0) {
+      this.x = this.size;
+    }
+  }
+
+  if ((this.x - this.size) <= 0) {
+    this.x = -(this.size);
+    if (this.x < 0) {
+      this.x = this.size;
+    }
+  }
+
+  if ((this.y + this.size) >= height) {
+    this.y = -(this.size);
+    if (this.y < 0) {
+      this.y = this.size;
+    }
+  }
+
+  if ((this.y - this.size) <= 0) {
+    this.y = -(this.size);
+    if (this.y < 0) {
+      this.y = this.size;
+    }
+  }
+}
+
+EvilCircle.prototype.setControls = function() {
+  window.onkeydown = e => {
+    if (e.key === 'a') {
+      this.x -= this.velX;
+    } else if (e.key === 'd') {
+      this.x += this.velX;
+    } else if (e.key === 'w') {
+      this.y -= this.velY;
+    } else if (e.key === 's') {
+      this.y += this.velY;
+    }
+  };
+}
+
+EvilCircle.prototype.collisionDetect = function() {
+  for (let j = 0; j < balls.length; j++) {
+    if (balls[j].exists) {
+      const dx = this.x - balls[j].x;
+      const dy = this.y - balls[j].y;
+      const distance = Math.sqrt(dx * dx + dy * dy);
+
+      if (distance < this.size + balls[j].size) {
+        balls[j].exists = false;
+        showBallCount(--ballCount);
+      }
+    }
+  }
+}
 
 // 定义一个数组来保存所有的球
 const balls = [];
+const evilCircle = new EvilCircle(20, 20, true);
+evilCircle.setControls();
+let ballCount = 0;
 
 // 定义一个循环来不停地播放
 function loop() {
   ctx.fillStyle = 'rgb(0, 0, 0, 0.25)';
   ctx.fillRect(0, 0, width, height);
+
+  if (ballCount === 0) {
+    balls.splice(0, balls.length);
+  }
 
   while (balls.length < BALLS_COUNT) {
     const size = random(BALL_SIZE_MIN, BALL_SIZE_MAX);
@@ -115,15 +189,28 @@ function loop() {
       size
     );
     balls.push(ball);
+    showBallCount(++ballCount);
   }
 
   for (let i = 0; i < balls.length; i++) {
-    balls[i].draw();
-    balls[i].update();
-    balls[i].collisionDetect();
+    let ball = balls[i];
+    if (ball.exists) {
+      balls[i].draw();
+      balls[i].update();
+      balls[i].collisionDetect();
+    }
   }
+
+  evilCircle.draw();
+  evilCircle.checkBounds();
+  evilCircle.collisionDetect();
 
   requestAnimationFrame(loop);
 }
 
+function showBallCount(ballCount) {
+  p.textContent = "还剩 " + ballCount + " 个球";
+}
+
 loop();
+showBallCount(ballCount);
