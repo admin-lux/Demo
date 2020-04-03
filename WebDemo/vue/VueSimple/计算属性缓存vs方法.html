@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="example">
+			<p>Original message:{{message}}</p>
+			<p>Reversed message: "{{reversedMessage()}}"</p>
+			<p>now date:{{now()}}</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		let vue = new Vue({
+			el:'#example',
+			data:{
+				message:'hello',
+				
+			},
+			methods:{
+				reversedMessage:function(){
+					return this.message.split('').reverse().join('');
+				},now:function(){
+					return Date.now();
+				}
+			},
+			computed:{
+				
+			}
+		});
+		
+	</script>
+</html>
