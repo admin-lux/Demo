@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/vue.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div>
+				<input type="radio" v-bind:id="a" v-model="pick" v-bind:value="a">
+				<label for="a">{{a}}</label>
+				<br>
+				<input type="radio" v-bind:id="b" v-model="pick" v-bind:value="b">
+				<label for="b">{{b}}</label>
+				
+				<br>
+				<p>{{pick}}</p>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+			new Vue({
+				el:'#app',
+				data:{
+					pick:'a',
+					a:'a',
+					b:'b'
+				}
+			})
+		</script>
+	</body>
+</html>
