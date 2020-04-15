@@ -7,7 +7,10 @@
 	</head>
 	<body>
 		<div id="app">
-			<base-input v-on:focus.native="onFocus"></base-input>
+			<label>性别：</label>
+			<base-input name="sex" id="man" type="radio" label="男" value="1"></base-input>
+			<base-input name="sex" id="woman" type="radio" label="女" value="2"></base-input>
+			<p>{{sex}}</p>
 		</div>
 		
 		<script type="text/javascript">
@@ -42,6 +45,13 @@
 			      >
 			    </label>
 			  `
+			})
+			
+			new Vue({
+				el:'#app',
+				data:{
+					sex:1
+				}
 			})
 		</script>
 	</body>
