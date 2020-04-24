@@ -1,0 +1,23 @@
+
+body{
+    background-color: dimgrey;
+    background-position: center;
+    font-size: 14px;
+}
+
+h1{
+    color: white;
+    background-position: center;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+nav{
+    background-color: white;
+}
+
+.nav-a{
+    background-color: darkslategrey;
+    color: white;
+    
+}
