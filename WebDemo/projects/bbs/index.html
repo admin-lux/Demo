@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=300, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>register</title>
+    <link rel="stylesheet" href="css/index.css">
+    <title>PHP-MySQL forum</title>
 </head>
 <body>
     <header>
@@ -12,21 +13,39 @@
     </header>
     
     <nav>
-        <div>
-            <a class="nav-a" href="#">首页</a>-
-            <a class="nav-a" href="#">创建主题</a>-
-            <a class="nav-a" href="#">创建类别</a>
+        <div id="menu">
+            <a class="nav-a" href="#">Home</a> -
+            <a class="nav-a" href="#">Create a topic</a> -
+            <a class="nav-a" href="#">Create a category</a>
+            <div id="userbar">
+                <div id="userbar">Hello Example. Not you? Log out.</div>
+            </div>
         </div>
-        <div>
-            <a class="nav-a" href="#">登录</a> or 
-            <a class="nav-a" href="#">注册</a>
-        </div>
-    
     </nav>
 
     <main>
-
-
+        <h3>Sign up</h3>
+        <form action="#" method="post">
+            <div>
+                <label for="user_name">Username:</label>
+                <input type="text" name="user_name" id="user_name">
+            </div>
+            <div>
+                <label for="user_pass">Password:</label>
+                <input type="password" name="user_pass" id="user_pass">
+            </div>
+            <div>
+                <label for="user_pass_check">Password again:</label>
+                <input type="password" name="user_pass_check" id="user_pass_check">
+            </div>
+            <div>
+                <label for="user_email">E-mail:</label>
+                <input type="email" name="user_email" id="user_email">
+            </div>
+            <div id="submit">
+                <input type="submit" value="Add category">
+            </div>
+        </form>
     </main>
 
     <footer>
